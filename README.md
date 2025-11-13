@@ -84,14 +84,27 @@
 
 <hr></br>
 
-#### Basic Production Apps
+#### Production Apps
 
 <code>sudo apt-get install vlc</code> # Media Player
 
 <code>sudo apt-get install obs-studio</code> # Broadcasting/Streaming Soft
 
 </br></br>
-#### Basic Art Apps
+#### Browser Apps
+
+<code>sudo apt install librewolf</code> # Hardened Firefox
+
+<code>sudo add-apt-repository ppa:xtradeb/apps</code> # Chrom Libraries [ungoogled edition]
+
+<code>sudo apt update</code> # Normal Update Files Request
+
+<code>sudo apt install ungoogled-chromium</code> # Installs Ungoogled Chromium
+
+<code>ungoogled-chromium</code> # Runs Ungoogled Chromium
+
+</br></br>
+#### Draw/Art Apps
 
 <code>sudo apt-get install blender</code> # 3D Manipulation Editor
 
@@ -100,14 +113,14 @@
 <code>sudo apt-get install gimp</code> # Common Image Editor
 
 </br></br>
-#### Basic Video-Editing Apps
+#### Video-Editing Apps
 
 <code>sudo apt-get install kdenlive</code> # Video Editor
 
 <code>sudo apt-get install shotcut</code> # Video Editor
 
 </br></br>
-#### Basic Game Apps
+#### Game Running Apps
 
 <code>sudo apt-get install lutris</code> # Multi-System Game HUB & Driver/Installer
 
@@ -118,7 +131,7 @@
 <code>sudo apt install steam-installer steam-devices</code> # Steam by Valve for Games on most systems
 
 </br></br>
-#### Basic Audio & Synth Apps
+#### Audio & Synth Apps
 
 <code>sudo apt-get install audacity</code> # Audio
 
@@ -128,7 +141,7 @@
 
 </br></br>
 
-### Telegram & Signal
+### Telegram & Signal Messenging
 &nbsp;&nbsp;&nbsp; I'm grabbing Telegram upfront (I use this as a cloud storage pass between my phone & PC).
 
 <code>sudo snap install telegram-desktop</code>
@@ -142,6 +155,55 @@
  2) <code>echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main" | sudo tee /etc/apt/sources.list.d/signal.list</code>
   
  3) <code>sudo apt update && sudo apt install signal-desktop</code>
+
+</br></br>
+
+### Vtuber Apps
+&nbsp;&nbsp;&nbsp; Vtubing may not have a tone of options on Linux but VSeeFace & SysMocap have been known to work through Lutris or Wine (both installed earlier), with Lutris working best for Linux 24+ versions. Next we are going to go through the process of getting SysMocap to work on Linux but before that I will give some quick tips to getting any windows based app/game to work via Lutris/Wine (both use same underlying tech and game runners).
+
+</br></br>
+
+#### Lutris/Wine Tips
+ 1) Use an installer to initate the file save, then configure the runners and settings before launching after installed via MSI or stand-alone installer
+ 2) Sometimes you need to use a game runner to be able to use menus then get everything ready, exit change runners then load again to then play/use the game/app
+ 3) Having the correct font makes a world of difference
+ 4) Find out what dependencies are needed, sometimes you need to lock a dependency to an app especially if the app/game uses an older dependency
+ 5) Lutris Runtime can mimic old computer systems some games may rely on for timing or starting/DRM processes
+
+</br>
+
+##### Specifically SysMocap Lutirs/Wine Tips <sup>*[**FOLLOW IN THIS ORDER**]*</sup>
+ 1) Fully update your npm and nodejs by reinstalling them (do not clean these if there are vulnable dependencies because some of the SysMocap dependencies are now days vulnable)
+ 2) Use winetricks to turn on and activate: all codex, .net data, C++ data, (your GPU specific extras), directdraw and dirc, 3D rendering services
+ 3) Usd Lutris to add an exe -> use windows MSI installer file for the exe -> proceed to install process to setup the folders and enviroment for Lutris -> successfully exit without Launch
+ 4) Configure File to run with machine libraries, do not disable lutris runtime, use Ubuntu 9 rebuild runners, Use no-fsync/e-sync nor DRMs, setup your needed GPU/intergrated-graphics toggles now
+ 5) Run (it may not pull up first time, if so close with lutris then open again this time debugger should run and app should appear visible after that) -> Setup your settings and character but your cameras shouldn't work correctly -> safely exit
+ 6) Configure file to run on compatable windows x86 or the correct bit formation for sysmocap then run as is with rest of specs
+ 7) Run (should run on first try and debugger may run) -> use Mocap feature and enjoy
+
+</br></br>
+
+#### SysMocap
+&nbsp;&nbsp;&nbsp; You can visit <a href="https://github.com/xianfei/SysMocap" target="_blank" rel="noopener noreferrer">https://github.com/xianfei/SysMocap</a> to obtain the linux source files and/or the Windows MSI (installer). Following will be the code to get the base application installed.
+
+<code>git clone https://github.com/xianfei/SysMocap.git</code> # Do Not Use "sudo"
+
+<code>sudo apt-get install nodejs</code> # Js Libraries
+
+<code>cd SysMocap</code> # sets to the app folder
+
+<code>npm install</code> # Do Not Use "sudo" | Installs NPM (used as a Linux Installer) </br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ***NOTE:**  DO NOT CLEAN NPM && DO NOT AUDIT FIX NPM NOR AUDIT NPM*
+
+<code>npm start</code> # Do Not Use "sudo" | Runs SysMocap </br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ***NOTE:**  YOU MAY NEED TO SET FLAGS TO HANDLE YOUR SPECIFIC GPU/iGPU SCENERIO TO GET BETTER PERFORMANCE AND/OR TO RUN THE APPLICATION*
+
+***NOTE:** YOU MAY HAVE TO SET PERMISSIONS EVEN THOUGH INSTALLED WITH NO EXTRA PERMISSIONS*
+
+</br></br>
+
+&nbsp;&nbsp;&nbsp; If you have issues after install getting the app to run like a white screen error, here are some helpful tips to get you past this error (normally a vue error for specifically the white screen error upon loading):
+
+  A) Lock various dependencies to their needed version for this application. ***For example:** Vue3 is a more common version of vue to have on Kubuntu with Nvidia GPUs so locking the version for SysMocap to vue2 will prevent global variable changes from preventing vue creating the display (white screen error).*
+  B) You may need to nuke your install package.json and reinstall with your needed GPU repository and dependecies to bypass some white screen errors.
 
 
 </br></br>
