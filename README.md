@@ -64,7 +64,7 @@
 
 #### Basic Production Apps
 
-<code>sudo apt-get install vlc/code>
+<code>sudo apt-get install vlc</code>
 
 <code>sudo apt-get install obs-studio</code>
 
